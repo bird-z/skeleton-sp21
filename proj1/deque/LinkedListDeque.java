@@ -1,5 +1,8 @@
 package deque;
 
+import java.util.Iterator;
+import java.util.Objects;
+
 public class LinkedListDeque<T> {
     private  class Note{
        private Note first=null;
@@ -14,8 +17,8 @@ public class LinkedListDeque<T> {
     }
 
     private int size = 0;
-    private Note head =new Note();
-    private Note tail =new Note();
+    private final Note head =new Note();
+    private final Note tail =new Note();
 
     public LinkedListDeque(){
 //        head.first=null;
@@ -82,7 +85,7 @@ public class LinkedListDeque<T> {
     /**Removes the item of note  front of the tail
      * size minus one*/
 
-    public T removeTail(){
+    public T removeLast(){
         if(size==0) return  null;
         T temp=tail.last.item;
         tail.first.first.last=tail;
@@ -90,4 +93,57 @@ public class LinkedListDeque<T> {
         size--;
         return temp;
     }
+    public T get(int index){
+        if(index>=size) return null;
+
+        Note no = head.last;
+        for (int i = 0; i < index; i++) {
+            no=no.last;
+        }
+        return no.item;
+    }
+    public Iterator<T> iterator(){
+        return new Iterator<T>() {
+            int currentIndex=0;
+            Note no=head;
+            @Override
+            public boolean hasNext() {
+                return currentIndex<size;
+            }
+
+            @Override
+            public T next() {
+                no=no.last;
+                if(hasNext()){
+                    currentIndex++;
+                    return no.item;
+                }
+                else{
+                    return null;
+                }
+            }
+        };
+
+    }
+
+    public boolean equals(Object o){
+        if( ! (o instanceof LinkedListDeque<?>)){
+            return false;
+        }
+
+
+        if(((LinkedListDeque<?>) o).getSize() != size){
+            return false;
+        }
+
+        Iterator<?> oIterator = ((LinkedListDeque<?>) o).iterator();
+        Iterator<?> thisIterator = this.iterator();
+        while (oIterator.hasNext()){
+            if(oIterator.next()!=thisIterator.next()){
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
