@@ -96,7 +96,7 @@ public class ArrayDeque<T> {
     }
 
     /**get size of arr*/
-    public int getSize(){
+    public int size(){
         return size;
     }
 

@@ -47,11 +47,11 @@ public class text {
         arr.addFirst(8);
         arr.addList(20);
         arr.addList(30);
-        System.out.println(arr.getSize());
+        System.out.println(arr.size());
         System.out.println(arr.getMaxSize());
         for (int l = 0; l < 10; l++) {
             System.out.println(arr.reFirst());
-            System.out.println(arr.getSize());
+            System.out.println(arr.size());
             System.out.println(arr.getMaxSize());
             System.out.println("##############");
         }

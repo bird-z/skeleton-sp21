@@ -67,7 +67,7 @@ public class LinkedListDeque<T> {
         else return false;
     }
     /**Return size of deque*/
-    public int getSize(){
+    public int size(){
         return size;
     }
     /**Removes the item of note back of the head
@@ -87,7 +87,7 @@ public class LinkedListDeque<T> {
 
     public T removeLast(){
         if(size==0) return  null;
-        T temp=tail.last.item;
+        T temp=tail.first.item;
         tail.first.first.last=tail;
         tail.first=tail.first.first;
         size--;
@@ -126,13 +126,20 @@ public class LinkedListDeque<T> {
 
     }
 
+    public void printDeque(){
+        Iterator<?> thisIterator = this.iterator();
+        while (thisIterator.hasNext()){
+            System.out.print(thisIterator.next()+" ");
+        }
+        System.out.println();
+    }
     public boolean equals(Object o){
         if( ! (o instanceof LinkedListDeque<?>)){
             return false;
         }
 
 
-        if(((LinkedListDeque<?>) o).getSize() != size){
+        if(((LinkedListDeque<?>) o).size() != size){
             return false;
         }
 
