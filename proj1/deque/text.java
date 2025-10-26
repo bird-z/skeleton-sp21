@@ -36,7 +36,7 @@ public class text {
 
 //        System.out.println(intList.equals(n));
 //        System.out.println((-2+5)%5);
-        ArrayDeque<Integer> arr=new ArrayDeque<>();
+        ArrayDeque<Integer> arr= new ArrayDeque<Integer>();
         arr.addFirst(1);
         arr.addFirst(2);
         arr.addFirst(3);
@@ -45,15 +45,13 @@ public class text {
         arr.addFirst(6);
         arr.addFirst(7);
         arr.addFirst(8);
-        arr.addList(20);
-        arr.addList(30);
+        arr.addLast(20);
+        arr.addLast(30);
         System.out.println(arr.size());
         System.out.println(arr.getMaxSize());
-        for (int l = 0; l < 10; l++) {
-            System.out.println(arr.reFirst());
-            System.out.println(arr.size());
-            System.out.println(arr.getMaxSize());
-            System.out.println("##############");
+        Iterator<Integer> intI=arr.iterator();
+        while (intI.hasNext()){
+            System.out.println(intI.next());
         }
 //        for (int i = 0; i < 6; i++) {
 //            System.out.println("%%");

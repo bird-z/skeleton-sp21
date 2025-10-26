@@ -1,7 +1,9 @@
 package deque;
 
-public class ArrayDeque<T> {
-    private T[]  arr= (T[]) new Object[8];
+import java.util.Iterator;
+
+public class ArrayDeque<T> implements deque<T>{
+    protected T[]  arr= (T[]) new Object[8];
     private int  size ,maxSize;
     private int first ,last;
 
@@ -23,7 +25,7 @@ public class ArrayDeque<T> {
     }
 
     /**add T back of list*/
-    public void addList(T item){
+    public void addLast(T item){
         if(size+2>maxSize){
             addSize();
         }
@@ -33,7 +35,8 @@ public class ArrayDeque<T> {
     }
 
     /**reFirst*/
-    public T reFirst(){
+    public T removeFirst(){
+        if(size==0) return  null;
         if(size>20&&size<maxSize/4){
             minesSize();
         }
@@ -44,7 +47,11 @@ public class ArrayDeque<T> {
     }
 
     /**reLast*/
-    public T reLast(){
+
+    public T removeLast(){
+        if(size()==0){
+            return null;
+        }
         if(size>20&&size<maxSize/4){
             minesSize();
         }
@@ -100,8 +107,51 @@ public class ArrayDeque<T> {
         return size;
     }
 
+    @Override
+    public boolean isEmpty() {
+        if(size()==0)
+        return true;
+        else  return false;
+    }
+
     /**get maxsize of arr*/
     public int getMaxSize(){
         return maxSize;
+    }
+    /**get iterator of arr*/
+    public Iterator<T> iterator(){
+        return new Iterator<T>() {
+            int step=0;
+            @Override
+            public boolean hasNext() {
+                return step<size;
+            }
+
+            @Override
+            public T next() {
+                step+=1;
+                return arr[(first+step+maxSize)%maxSize];
+            }
+        };
+    }
+
+    @Override
+    public T get(int index) {
+        Iterator<?> thisIt=this.iterator();
+        int step=0;
+        while (thisIt.hasNext()){
+            T temp= (T) thisIt.next();
+            if(step==index) return  temp;
+            step++;
+        }
+        return null;
+    }
+
+    @Override
+    public void printDeque() {
+        Iterator<?> thisTt = this.iterator();
+        while (thisTt.hasNext()){
+            System.out.println(thisTt.next()+" ");
+        }
     }
 }

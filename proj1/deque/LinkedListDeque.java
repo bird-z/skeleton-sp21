@@ -3,7 +3,7 @@ package deque;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class LinkedListDeque<T> {
+public class LinkedListDeque<T> implements deque<T>{
     private  class Note{
        private Note first=null;
        private Note last=null;
