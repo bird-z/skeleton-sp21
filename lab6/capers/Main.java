@@ -4,8 +4,9 @@ import java.io.File;
 
 import static capers.Utils.*;
 
+import java.util.Arrays;
 /** Canine Capers: A Gitlet Prelude.
- * @author TODO
+ * @bird TODO
 */
 public class Main {
     /**
@@ -36,6 +37,7 @@ public class Main {
      *
      * @param args arguments from the command line
      */
+    
     public static void main(String[] args) {
         if (args.length == 0) {
             Utils.exitWithError("Must have at least one argument");
@@ -53,10 +55,14 @@ public class Main {
         case "dog":
             validateNumArgs("dog", args, 4);
             // TODO: make a dog
+            String name=args[1],breed=args[2],age=args[3];
+            CapersRepository.makeDog(name,breed, Integer.parseInt(age));
             break;
         case "birthday":
             validateNumArgs("birthday", args, 2);
             // TODO: celebrate this dog's birthday
+            String bir=args[1];
+            CapersRepository.celebrateBirthday(bir);
             break;
         default:
             exitWithError(String.format("Unknown command: %s", args[0]));
