@@ -1,2 +1,4 @@
-package gitlet;public class text {
+package gitlet;
+
+public class text {
 }
